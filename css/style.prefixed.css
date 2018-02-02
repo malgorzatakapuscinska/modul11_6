@@ -1,0 +1,46 @@
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 20px 0;
+}
+
+.column-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: strech;
+      -ms-flex-align: strech;
+          align-items: strech;
+}
+
+.create-column {
+  margin: 0 auto;
+}
+
+.column {
+  border: 3px solid red;
+  background-color: yellow;
+  min-width: 400px;
+  min-height: 400px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 auto;
+          flex: 0 auto;
+  border-radius: 15px;
+}
+
+.column-card-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card {
+  border: 3px solid green;
+  background-color: white;
+}
+/*# sourceMappingURL=style.prefixed.css.map */

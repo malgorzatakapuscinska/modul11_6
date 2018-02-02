@@ -1,0 +1,38 @@
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 20px 0;
+}
+
+.column-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  align-items: strech;
+}
+
+.create-column {
+  margin: 0 auto;
+}
+
+.column {
+  border: 3px solid red;
+  background-color: yellow;
+  min-width: 400px;
+  min-height: 400px;
+  flex: 0 auto;
+  border-radius: 15px;
+}
+
+.column-card-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card {
+  border: 3px solid green;
+  background-color: white;
+}
+
+/*# sourceMappingURL=style.css.map */
