@@ -22,7 +22,7 @@ var board = {
 		name: 'Kanban Board',
 		addColumn: function(column) {
 			this.$element.append(column.$element);
-			/*initSortable();*/
+			initSortable();
 		},
 
 		$element: $('#board .column-container')
@@ -108,13 +108,11 @@ Card.prototype = {
 		}
 };
 
-
-
-
 function initSortable() {
     $('.column-card-list').sortable({
       connectWith: '.column-card-list',
-      placeholder: 'card-placeholder'
+      placeholder: '.card-placeholder',
+      dropOnEmpty: true
     }).disableSelection();
   }
 
