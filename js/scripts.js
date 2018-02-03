@@ -30,10 +30,14 @@ var board = {
 
 $('.create-column')
 .click(function(){
-	var name = prompt('Enter a column name');
-	
-	var column = new Column(name);
-  	board.addColumn(column);
+	var name = prompt('Enter a column name', 'Column\'\s name');
+	console.log(name);
+	if(name != null){
+		var column = new Column(name);
+		board.addColumn(column);}
+	else {
+		return false;
+	}
 });
 
 function Column(name) {
@@ -48,17 +52,25 @@ function createColumn (){
 	var $column=$('<div>').addClass('column');
 	var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
 	var $columnCardList = $('<ul>').addClass('column-card-list');
-	var $columnDelete = $('<button>').addClass('btn-delete').text('x');
-	var $columnAddCard = $('<button>').addClass('add-card').text('Add a Card');
+	var $columnDeleteButton = $('<button>').addClass('btn-delete btn');
+	var $columnDeleteSymbol = $('<span  class="glyphicon glyphicon-remove" aria-hidden="true" aria-hidden="true"></span>');
+	var $columnAddCard = $('<button>').addClass('add-card btn btn-success btn-sm').text('Add a Card');
 	
-	$columnDelete.click(function(){
+	$columnDeleteButton.click(function(){
 		self.removeColumn();
 	});
+	
 	$columnAddCard.click(function(event){
 		event.preventDefault();
-		self.addCard(new Card(prompt('Enter the name of the card')));
+		var cardName = prompt('Enter the name of the card');
+		if(name != null){
+		self.addCard(new Card(cardName));
+		}else{
+			return false;
+		}
 	});
-	$column.append($columnTitle).append($columnDelete).append($columnAddCard).append($columnCardList);
+	$columnDeleteButton.append($columnDeleteSymbol);
+	$column.append($columnTitle).append($columnDeleteButton).append($columnAddCard).append($columnCardList);
 	return $column;
 }
 
@@ -86,16 +98,14 @@ function Card(description) {
 	function createCard() {
 		 var $card = $('<li>').addClass('card');
 		 var $cardDescription = $('<p>').addClass('card-description').text(self.description);
-		 var $cardDelete = $('<button>').addClass('btn-delete').text('x');
+		 var $cardDeleteButton = $('<button>').addClass('card-delete btn');
+		 var $cardDeleteSymbol = $('<span  class="glyphicon glyphicon-remove" aria-hidden="true" aria-hidden="true"></span>');
 		 
-		 console.log($card);
-		 console.log($cardDescription);
-		 console.log($cardDelete);
-		 $cardDelete.click(function(){
+		 $cardDeleteButton.click(function(){
 			 self.removeCard();
 		 });
-		 
-		 $card.append($cardDelete).append($cardDescription);
+		 $cardDeleteButton.append($cardDeleteSymbol);
+		 $card.append($cardDeleteButton).append($cardDescription);
 		 
 		 console.log($card);
 		 return $card;
