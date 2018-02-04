@@ -16,7 +16,6 @@ function randomString(){
 //floor - metoda zaokrąglająca liczby w dół
 //random - metoda losująca liczbę z zakresu <0,1)
 
-//KLASA KOLUMN
 
 var board = {
 		name: 'Kanban Board',
@@ -25,20 +24,17 @@ var board = {
 			initSortable();
 		},
 
-		$element: $('#board .column-container')
+		$element: $('.column-container')
 };
 
-$('.create-column')
-.click(function(){
+$('.create-column').click(function(){
 	var name = prompt('Enter a column name', 'Column\'\s name');
-	console.log(name);
 	if(name != null){
-		var column = new Column(name);
-		board.addColumn(column);}
-	else {
-		return false;
-	}
+		var column = new Column(name); // tworzymy nową instancję klasy Column
+		board.addColumn(column);}//modyfikujemy właściwość obiektu board - dodajemy utworzoną wczesniej kolumnę do elementu o klasie .column-container
 });
+
+//klasa Column
 
 function Column(name) {
 	var self = this;
@@ -48,7 +44,10 @@ function Column(name) {
 	this.$element = createColumn();
 
 
-function createColumn (){
+	function createColumn (){
+		
+	//tworzymy poszczególne elementy kolumny:
+		
 	var $column=$('<div>').addClass('column');
 	var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
 	var $columnCardList = $('<ul>').addClass('column-card-list');
@@ -56,17 +55,17 @@ function createColumn (){
 	var $columnDeleteSymbol = $('<span  class="glyphicon glyphicon-remove" aria-hidden="true" aria-hidden="true"></span>');
 	var $columnAddCard = $('<button>').addClass('add-card btn btn-success btn-sm').text('Add a Card');
 	
+	//ustawiamy nasłuchiwanie zdarzeń
+	
 	$columnDeleteButton.click(function(){
 		self.removeColumn();
 	});
 	
 	$columnAddCard.click(function(event){
-		event.preventDefault();
-		var cardName = prompt('Enter the name of the card');
-		if(name != null){
+		
+		var cardName = prompt('Enter the name of the card', 'Card\'\s name');
+		if(cardName != null){
 		self.addCard(new Card(cardName));
-		}else{
-			return false;
 		}
 	});
 	$columnDeleteButton.append($columnDeleteSymbol);
