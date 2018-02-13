@@ -29,9 +29,14 @@ var board = {
 
 $('.create-column').click(function(){
 	var name = prompt('Enter a column name', 'Column\'\s name');
-	if(name != null){
+	if(name){
 		var column = new Column(name); // tworzymy nową instancję klasy Column
-		board.addColumn(column);}//modyfikujemy właściwość obiektu board - dodajemy utworzoną wczesniej kolumnę do elementu o klasie .column-container
+		board.addColumn(column);
+	}else if(name == "") {
+		
+		var column = new Column('Untitled'); 
+		board.addColumn(column); //modyfikujemy właściwość obiektu board - dodajemy utworzoną wczesniej kolumnę do elementu o klasie .column-container
+	}
 });
 
 //klasa Column
@@ -64,9 +69,11 @@ function Column(name) {
 	$columnAddCard.click(function(event){
 		
 		var cardName = prompt('Enter the name of the card', 'Card\'\s name');
-		if(cardName != null){
+		if(cardName){
 		self.addCard(new Card(cardName));
-		}
+		}else if(cardName == ""){
+			console.log(cardName);
+			self.addCard(new Card('Umtitled'));}
 	});
 	$columnDeleteButton.append($columnDeleteSymbol);
 	$column.append($columnTitle).append($columnDeleteButton).append($columnAddCard).append($columnCardList);
